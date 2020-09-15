@@ -5,15 +5,11 @@ import com.sg.katajridi.models.Client;
 import com.sg.katajridi.repositories.AccountRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.persistence.EntityManager;
 
 import static com.sg.katajridi.models.OperationType.DEPOSIT;
 import static com.sg.katajridi.models.OperationType.WITHDRAWL;
@@ -34,8 +30,8 @@ public class AccountServiceTest {
 
     @Test
     public void get_account_by_number() {
-       Client client = Client.builder().firstName("sam").lastName("sam").build();
-       Account accountTest = Account.builder()
+        Client client = Client.builder().firstName("sam").lastName("sam").build();
+        Account accountTest = Account.builder()
                 .number("252624")
                 .amount(1500)
                 .client(client)
@@ -44,13 +40,10 @@ public class AccountServiceTest {
         Account result = accountService.findByNumber("252624");
         Assertions.assertAll("get account by number",
                 () -> Assertions.assertNotNull(result),
-                () -> Assertions.assertSame(accountTest,result)
+                () -> Assertions.assertSame(accountTest, result)
         );
-
-
     }
 
-    @Disabled
     @Test
     public void make_deposit_case() {
         Client client = Client.builder().id(1L).firstName("med").lastName("jridi").build();
@@ -76,7 +69,6 @@ public class AccountServiceTest {
     }
 
     @Test
-    @Disabled
     public void make_withdrawl_case() {
         Client client = Client.builder().id(1L).firstName("med").lastName("jridi").build();
         Account account = Account.builder()
